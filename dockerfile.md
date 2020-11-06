@@ -10,7 +10,7 @@ Estas plantillas o imágenes están formadas por capas que se reutilizan de unas
 
 Las capas se sobreponen unas encima de otras, cada una añade los archivos que se han modificado durante la creación de esa capa. El resultado es la imagen que nosotros levantamos cuando creamos un contenedor, que contiene todos los archivos necesarios.
 
-<img src="img/dockersfile-capas-1.png" alt="docker vs VMs" width="600px">
+<img src="img/dockerfile-capas-1.png" alt="docker vs VMs" width="600px">
 
 <img src="img/dockerfile-capas-2.png" alt="docker vs VMs" width="600px">
 
@@ -56,7 +56,7 @@ Desde el mismo directorio en el que se encuentra el Dockerfile
 
 `docker push USUARIO>/<NOMBRE IMAGEN>:<TAG OPCIONAL>`
 
-#### Dockerfile multi-stage
+## Dockerfile multi-stage
 
 Son Dockerfiles que utilizan varias imágenes base. Esto es muy útil para ejecutar distintos pasos para construir mi aplicación, en distintas imágenes que continen software específico, y finalmente se copian los artefactos generados en la imagen definitiva.
 

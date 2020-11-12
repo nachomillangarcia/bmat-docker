@@ -33,10 +33,13 @@ COPY requirements.txt requirements.txt
 
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copiar el docker entrypoint
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+
 # Copiar el código fuente
-COPY . .
+COPY src .
 
 # Comando inicial que ejecutará el contenedor
-ENTRYPOINT [ "python", "app.py" ]
+ENTRYPOINT [ "/docker-entrypoint.sh" ]
 
-CMD [ "" ]
+CMD [ "python", "app.py" ]

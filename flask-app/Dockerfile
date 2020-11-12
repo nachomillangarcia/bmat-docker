@@ -6,10 +6,22 @@ WORKDIR /app
 RUN echo FOO BAR FOO BAR > artifact
 
 
-
 FROM python:3.9-slim
 
+# Argumentos para pasar durante docker build
+ARG API_KEY
+
+# Carpeta "home" de la imagen
 WORKDIR /usr/src/app
+
+# Labels con cualquier metadata
+LABEL maintainer="nachomillangarcia@gmail.com"
+
+# Variables de entorno
+ENV FOO=BAR
+
+# Puertos que expone la imagen
+EXPOSE 5000
 
 # Instalación de librerias con apt
 RUN apt update && \
@@ -24,6 +36,9 @@ RUN apt update && \
 ADD https://github.com/wagoodman/dive/releases/download/v0.9.2/dive_0.9.2_linux_amd64.deb dive.deb
 
 RUN dpkg -i dive.deb
+
+# Imprimir un build arg
+RUN echo ${API_KEY}
 
 # Copiar artefactos de etapas anteriores 
 COPY --from=make-lib /app/artifact artifact

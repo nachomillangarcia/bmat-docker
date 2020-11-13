@@ -46,11 +46,28 @@ Ver [https://docs.docker.com/engine/reference/builder/#understand-how-cmd-and-en
 
 `EXPOSE` Especifica el (o los) puerto(s) que va a escuchar el contenedor
 
+`VOLUME` Especifica el/los directorios que deberían contener datos persistentes
+
+`LABEL` Sirve para añadir metadata a las imágenes (información del autor, fecha, etc.)
+
+`ENV` Para declarar variables de entorno que estarán presentes tanto en el resto de pasos del Dockerfile como en el contenedor final
+
+`ARG` Para declarar variables que podemos pasar al Dockerfile cuando ejecutemos `docker build` mediante la opción `--build-arg`. Estarán disponibles como variables de entorno para el resto de pasos del Dockerfile.
+
 #### Construir imagen de Docker
 
 Desde el mismo directorio en el que se encuentra el Dockerfile
 
 `docker build -t <USUARIO>/<NOMBRE IMAGEN>:<TAG OPCIONAL> .`
+
+Para pasarle parámetros decalrados con `ARG`:
+
+`docker build -t <USUARIO>/<NOMBRE IMAGEN>:<TAG OPCIONAL> --build-arg NAME=VALUE .`
+
+Para evitar el uso de cache:
+
+`docker build -t <USUARIO>/<NOMBRE IMAGEN>:<TAG OPCIONAL> --no-cache . `
+
 
 #### Subir imagen a DockerHub
 
@@ -66,4 +83,6 @@ Para copiar artefactos entre un stage y otro, utilizamos el comando `COPY`:
 
 `COPY --from=<STAGE> <CARPETA ORIGEN> <CARPETA DESTINO>`
 
-Ver la aplicación java-app-todo-mysql para un ejemplo.
+Ver la aplicación flask-app para un ejemplo.
+
+Podemos hacer `docker build` hasta una etapa en concreto con la opción `--target <ALIAS DE LA ETAPA>`

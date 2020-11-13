@@ -140,3 +140,26 @@ En este caso el CMD sería `catalina.sh debug`
 #### Conetar un conenedor existente a esa red
 
 `docker network connect <NOMBRE RED> <CONTENEDOR>`
+
+
+## Proceso principal o PID 1
+
+Siempre que trabajemos con contenedores es fundamental asegurarnos de que el proceso que se está ejecutando dentro del conenedor lo haga con PID 1. Se pueden ver los procesos y su PID con el comando `ps aux`. 
+
+En caso de que necesitemos ejecutar algún otro proceso como un script de bash antes de comenzar el que será el proceso principal, podemos utilizar el comando de bash `exec` para sustituir el proceso de bash con el proceso que queramos (python, etc)
+
+Puedes ver un ejemplo en el Dockerfile de flask-app y en el archivo docker-entrypoint.sh
+
+El procedo con PID1 es importante en Docker porque será el que reciba las señales como SIGTERM al hacer docker stop. También es del que se muestran y almacenan los logs, o el que marca si el contenedor sigue encendido o está apagado.
+
+## Logs
+
+Docker muestra y almacena por defecto todos los logs que el proceso del contenedor imprima por STDOUT o STDERR.
+
+Estos logs se pueden ver con el comando `docker logs <NOMBRE O ID>`
+
+Por defecto Docker no considera ningún otro archivo de logs que pueda haber dentro del contenedor. Todos los logs de la aplicación se deben imprimir por STDOUT y STDERR. Esto facilita mucho el desarrollo ya que no es necesario configurar distintos sistemas de log por entorno, etc. Todo lo que se imprima por esos streams queda almacenado.
+
+Los logs de todos los contenedores se almacenan en el directorio `/var/lib/docker/containers` Se almacenan en formato JSON y pueden ser leídos por cualquier sistema de log forwarding (FluentD, Logstash, Filebeat, etc).
+
+También se puede integrar con varios sistemas de logs mediate drivers que ya vienen incluidos con Docker, para que estos logs se envíen directamente a estos sistemas en lugar de almacenarlos en disco: [https://docs.docker.com/config/containers/logging/configure/](https://docs.docker.com/config/containers/logging/configure/)

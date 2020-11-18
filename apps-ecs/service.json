@@ -1,0 +1,13 @@
+{
+  "cluster": "bmat-docker",
+  "launchType": "FARGATE",
+  "serviceName": "my-app",
+  "taskDefinition": "my-app",
+  "desiredCount": 2,
+  "networkConfiguration": {
+    "awsvpcConfiguration": {
+      "assignPublicIp": "ENABLED",
+      "subnets": ["subnet-06f04dc396fd0f2ee", "subnet-0229c1b2419212313"]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+version: '3'
+services:
+  web:
+    image: nachomillangarcia/flask-app
+    ports:
+      - "5000:5000"
+    logging:
+      driver: awslogs
+      options: 
+        awslogs-group: my-app-compose
+        awslogs-region: eu-west-2
+        awslogs-stream-prefix: web

@@ -33,9 +33,15 @@ RUN apt update && \
     apt-get clean
 
 # Descargar e instalar dependencias
-ADD https://github.com/wagoodman/dive/releases/download/v0.9.2/dive_0.9.2_linux_amd64.deb dive.deb
+# ADD https://github.com/wagoodman/dive/releases/download/v0.9.2/dive_0.9.2_linux_amd64.deb dive.deb
 
-RUN dpkg -i dive.deb
+# RUN dpkg -i dive.deb
+
+RUN addgroup --gid 1000 python && adduser --disabled-password --uid 1000 --gid 1000 python 
+
+ENV PATH=$PATH:/home/python/.local/bin
+
+USER python
 
 # Imprimir un build arg
 RUN echo ${API_KEY}

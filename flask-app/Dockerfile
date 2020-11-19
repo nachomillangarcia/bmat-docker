@@ -27,7 +27,7 @@ EXPOSE 5000
 RUN apt update && \
     apt --no-install-recommends install -y \
       ffmpeg \
-      python3-dev && \
+      curl && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get purge --auto-remove && \
     apt-get clean
@@ -64,3 +64,5 @@ COPY src .
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
 
 CMD [ "python", "app.py" ]
+
+HEALTHCHECK --interval=30s --timeout=1s --start-period=60s --retries=3 CMD [ "curl", "-q", "localhost:5000/" ]

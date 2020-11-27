@@ -69,6 +69,12 @@ Para evitar el uso de cache:
 `docker build -t <USUARIO>/<NOMBRE IMAGEN>:<TAG OPCIONAL> --no-cache . `
 
 
+Construir la imagen utilizando BuildKit:
+
+`DOCKER_BUILDKIT=1 docker build -t <USUARIO>/<NOMBRE IMAGEN>:<TAG OPCIONAL> .`
+
+Más info sobre BuildKit: [https://docs.docker.com/develop/develop-images/build_enhancements/](https://docs.docker.com/develop/develop-images/build_enhancements/)
+
 #### Subir imagen a DockerHub
 
 `docker push USUARIO>/<NOMBRE IMAGEN>:<TAG OPCIONAL>`

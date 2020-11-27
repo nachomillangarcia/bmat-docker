@@ -48,3 +48,10 @@ Para facilitar el desarrollo de código dentro de contenedores, se puede montar 
 
 De esta forma los cambios que hagamos en tiempo real en el código fuente quedarán reflejados dentro del contenedor. Depende del proceso que se esté ejecutando el leer estos cambios en tiempo real, como hace por ejemplo Flask por defecto.
 
+## VSCode
+
+Si desarrollas con VSCode tendrás a tu disposición la extensión para contenedores Docker, que te permite gestionar todos los contenedores desde VSCode, inspeccionar el sistema de archivos, e incluso abrir una instancia del propio VSCode en cualquiera de ellos y modificar el código fuente en tiempo real.
+
+[https://code.visualstudio.com/docs/containers/overview](https://code.visualstudio.com/docs/containers/overview)
+
+También puedes configurar el runtime de Python para que tus aplicaciones se ejecuten dentro de un contenedor con las mismas opciones que tendrías en tu host (breakpoints, debugging, etc). Guía paso a paso: [https://code.visualstudio.com/docs/containers/quickstart-python](https://code.visualstudio.com/docs/containers/quickstart-python)

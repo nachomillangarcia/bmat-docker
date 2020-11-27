@@ -152,6 +152,8 @@ Puedes ver un ejemplo en el Dockerfile de flask-app y en el archivo docker-entry
 
 El procedo con PID1 es importante en Docker porque será el que reciba las señales como SIGTERM al hacer docker stop. También es del que se muestran y almacenan los logs, o el que marca si el contenedor sigue encendido o está apagado.
 
+Puedes ver los procesos que pertenecen a cada contenedor con `docker top <CONTENEDOR>`
+
 ## Logs
 
 Docker muestra y almacena por defecto todos los logs que el proceso del contenedor imprima por STDOUT o STDERR.
